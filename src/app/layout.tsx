@@ -1,26 +1,29 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar/index";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: 'E-Commerce',
-	description: 'E-commerce site created in nextjs',
+  title: "ShopCart",
+  description: "E-commerce site created in nextjs",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<header></header>
-				{children}
-				<footer></footer>
-			</body>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <body className={`bg-bgWhite ${inter.className} md:px-12 lg:px-36`}>
+        <header>
+          <Navbar />
+        </header>
+        {children}
+        <footer></footer>
+      </body>
+    </html>
+  );
 }
