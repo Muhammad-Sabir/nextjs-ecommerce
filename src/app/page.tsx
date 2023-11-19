@@ -4,7 +4,7 @@ import Hero from "../components/Hero/index";
 
 export default function Home() {
   return (
-    <main>
+    <main className="mx-auto px-4 md:px-12 lg:w-[1300px]">
       <Hero />
 
       <h1
