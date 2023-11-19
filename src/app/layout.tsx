@@ -18,12 +18,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-bgWhite ${inter.className}`}>
-        <header className="mx-auto px-4 md:px-12 lg:w-[1300px]">
+      <body
+        className={`bg-bgWhite ${inter.className} mx-auto px-4 md:px-12 lg:w-[1300px]`}
+      >
+        <header>
           <Navbar />
         </header>
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
