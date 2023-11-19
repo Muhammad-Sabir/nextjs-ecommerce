@@ -3,8 +3,8 @@ import Product from "@/components/Product";
 
 export default function Home() {
   return (
-    <main>
-      <h1 className="text-blackishBlue pb-12 pt-6 font-bold">
+    <main className="mx-auto px-4 md:px-12 lg:w-[1300px]">
+      <h1 className="pb-12 pt-6 font-bold text-blackishBlue">
         Latest Products
       </h1>
 
