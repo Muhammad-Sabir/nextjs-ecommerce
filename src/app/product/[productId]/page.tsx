@@ -9,9 +9,7 @@ export default async function ProductDetails({
 }: {
   params: { productId: string };
 }) {
-  const res = await fetch(
-    `http://localhost:3000/api/product/${params.productId}`,
-  );
+  const res = await fetch(`${process.env.URL}/api/product/${params.productId}`);
   const product = await res.json();
 
   if (!product) {

@@ -3,7 +3,7 @@ import { ProductType } from "@/types/product";
 import Hero from "@/components/Hero/index";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/products");
+  const res = await fetch(`${process.env.URL}/api/products`);
   const products = await res.json();
 
   return (
