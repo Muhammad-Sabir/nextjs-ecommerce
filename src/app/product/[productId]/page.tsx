@@ -4,12 +4,15 @@ import Link from "next/link";
 import products from "@/products";
 import Rating from "@/components/Rating";
 
-export default function ProductDetails({
+export default async function ProductDetails({
   params,
 }: {
   params: { productId: string };
 }) {
-  const product = products.find((p) => p._id === params.productId);
+  const res = await fetch(
+    `http://localhost:3000/api/product/${params.productId}`,
+  );
+  const product = await res.json();
 
   if (!product) {
     return (

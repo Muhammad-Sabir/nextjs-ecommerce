@@ -1,19 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import products from "@/products";
+import { ProductType } from "@/types/product";
 import Rating from "../Rating/index";
 
-type Product = {
-  _id: string;
-  name: string;
-  image: string;
-  category: string;
-  price: number;
-  rating: number;
-  numReviews: number;
-};
-
-export default function Product({ product }: { product: Product }) {
+export default function Product({ product }: { product: ProductType }) {
   return (
     <Link
       href={`/product/${product._id}`}
