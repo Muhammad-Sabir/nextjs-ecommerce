@@ -46,7 +46,7 @@ export default function ProductDetails({
 
           <h1 className="text-2xl font-bold">{product.name}</h1>
 
-          <p className="my-3 mb-auto text-sm">
+          <p className="my-3 mb-auto pb-2 text-sm">
             <span className="block text-base font-bold">Description: </span>{" "}
             {product.description}
           </p>
