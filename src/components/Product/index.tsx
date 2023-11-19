@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import products from "@/products";
+import Rating from "../Rating/index";
 
 type Product = {
   _id: string;
@@ -8,6 +9,8 @@ type Product = {
   image: string;
   category: string;
   price: number;
+  rating: number;
+  numReviews: number;
 };
 
 export default function Product({ product }: { product: Product }) {
@@ -23,7 +26,8 @@ export default function Product({ product }: { product: Product }) {
         <h3 className="max-w-xs overflow-hidden overflow-ellipsis whitespace-nowrap py-2 font-bold text-blackishBlue">
           {product.name}
         </h3>
-        <p className="text-sm font-bold text-blue-500">{product.price}</p>
+        <Rating ratingVal={product.rating} numReviews={product.numReviews} />
+        <p className="pt-2 text-sm font-bold text-blue-500">{product.price}</p>
       </div>
     </Link>
   );
