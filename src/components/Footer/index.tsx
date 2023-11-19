@@ -1,8 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
 import { RiLinkedinBoxFill } from "react-icons/ri";
-
-import logo from "$/logo.png";
 
 export default function Footer() {
   return (
@@ -19,7 +16,7 @@ export default function Footer() {
 
       <div className="mx-20 my-12 border-b border-gray-500"></div>
 
-      <div className="flex justify-between text-lg">
+      <div className="text-md flex justify-between">
         <h3>
           Built by{" "}
           <Link
