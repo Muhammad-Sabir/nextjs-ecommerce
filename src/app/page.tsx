@@ -9,11 +9,11 @@ export default function Home() {
 
       <h1
         id="latest-products"
-        className="ml-auto pb-12 pt-6 text-center font-bold text-blackishBlue"
+        className="pb-12 pt-6 text-center font-bold text-blackishBlue"
       >
         Latest Products
       </h1>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-y-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => {
           return <Product product={product} key={product._id} />;
         })}

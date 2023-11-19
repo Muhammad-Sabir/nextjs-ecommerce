@@ -21,13 +21,13 @@ export default function Product({ product }: { product: Product }) {
     >
       <Image src={product.image} alt={product.name} width={350} height={350} />
 
-      <div className="pt-4 text-left">
+      <div className="pt-4">
         <p className="text-sm text-gray-400">{product.category}</p>
         <h3 className="max-w-xs overflow-hidden overflow-ellipsis whitespace-nowrap py-2 font-bold text-blackishBlue">
           {product.name}
         </h3>
         <Rating ratingVal={product.rating} numReviews={product.numReviews} />
-        <p className="pt-2 text-sm font-bold text-blue-500">{product.price}</p>
+        <p className="pt-2 text-sm font-bold text-blue-500">${product.price}</p>
       </div>
     </Link>
   );
