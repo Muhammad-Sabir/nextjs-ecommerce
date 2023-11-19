@@ -58,7 +58,7 @@ export default function ProductDetails({
           </h3>
         </div>
 
-        <div className="flex flex-col justify-between border border-gray-300 p-8 sm:col-span-full lg:col-span-1">
+        <div className="flex flex-col justify-between rounded-xl border border-gray-300 bg-white p-8 sm:col-span-full lg:col-span-1">
           <h2 className="flex justify-around pt-2 text-base font-bold text-blue-500">
             <span className="text-lg  text-blackishBlue">Price: </span>$
             {product.price}
