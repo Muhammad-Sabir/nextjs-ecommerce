@@ -7,5 +7,8 @@ export async function GET(
 ) {
   const product = products.find((p) => p._id === params.productId);
 
-  return NextResponse.json(product);
+  const headers = {
+    "Content-Type": "application/json",
+  };
+  return NextResponse.json(product, { headers });
 }
