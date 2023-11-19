@@ -4,6 +4,7 @@ import Hero from "@/components/Hero/index";
 
 export default async function Home() {
   const res = await fetch(`${process.env.URL}/api/products`);
+  if (res.headers.get("Content-Type") !== "application/json") return;
   const products = await res.json();
 
   return (

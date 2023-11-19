@@ -10,6 +10,7 @@ export default async function ProductDetails({
   params: { productId: string };
 }) {
   const res = await fetch(`${process.env.URL}/api/product/${params.productId}`);
+  if (res.headers.get("Content-Type") !== "application/json") return;
   const product = await res.json();
 
   if (!product) {
