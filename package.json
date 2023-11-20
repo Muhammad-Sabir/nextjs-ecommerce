@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "data:import": "node scripts/seed.mjs",
-    "data:destroy": "node scripts/seed.mjs -d"
+    "lint": "next lint"
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
