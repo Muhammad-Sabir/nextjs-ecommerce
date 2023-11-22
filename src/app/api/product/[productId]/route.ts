@@ -1,14 +1,20 @@
 import { NextResponse } from "next/server";
-import products from "@/products";
+import Product from "@/models/product";
+import dbConnect from "@/lib/db";
 
 export async function GET(
   req: Request,
   { params }: { params: { productId: string } },
 ) {
-  const product = products.find((p) => p._id === params.productId);
-
+  await dbConnect();
   const headers = {
     "Content-Type": "application/json",
   };
-  return NextResponse.json(product, { headers });
+  const product = await Product.findById(params.productId);
+
+  if (product) {
+    return NextResponse.json(product, { headers });
+  }
+
+  return NextResponse.json({ message: "Product not found" });
 }

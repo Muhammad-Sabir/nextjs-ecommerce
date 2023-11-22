@@ -1,6 +1,13 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-const reviewSchema = new mongoose.Schema(
+export interface Review extends Document {
+  user: mongoose.Schema.Types.ObjectId;
+  name: string;
+  rating: number;
+  comment: string;
+}
+
+const reviewSchema: Schema<Review> = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
     name: { type: String, required: true },
@@ -10,7 +17,22 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const productSchema = new mongoose.Schema(
+// Define the product schema
+export interface Product extends Document {
+  user: mongoose.Schema.Types.ObjectId;
+  name: string;
+  image: string;
+  brand: string;
+  category: string;
+  description: string;
+  reviews: Review[];
+  rating: number;
+  numReviews: number;
+  price: number;
+  countInStock: number;
+}
+
+const productSchema: Schema<Product> = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
     name: { type: String, required: true },
@@ -27,6 +49,5 @@ const productSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const Product = mongoose.model("Product", productSchema);
-
-export default Product;
+export default mongoose.models.Product ||
+  mongoose.model<Product>("Product", productSchema);

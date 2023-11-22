@@ -1,6 +1,45 @@
-import mongoose from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
+import { Product } from "./product"; // Assuming the product model is in the same directory
 
-const orderSchema = new mongoose.Schema(
+interface OrderItem {
+  name: string;
+  qty: number;
+  image: string;
+  price: number;
+  product: mongoose.Schema.Types.ObjectId | Product; // Assuming Product is the type/interface for your product model
+}
+
+interface ShippingAddress {
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+}
+
+interface PaymentResult {
+  id: string;
+  status: string;
+  update_time: string;
+  email_address: string;
+}
+
+export interface Order extends Document {
+  user: mongoose.Schema.Types.ObjectId; // Assuming User is the type/interface for your user model
+  orderItems: OrderItem[];
+  shippingAddress: ShippingAddress;
+  paymentMethod: string;
+  paymentResult?: PaymentResult;
+  itemsPrice: number;
+  taxPrice: number;
+  shippingPrice: number;
+  totalPrice: number;
+  isPaid: boolean;
+  paidAt?: Date;
+  isDelivered: boolean;
+  deliveredAt?: Date;
+}
+
+const orderSchema: Schema<Order> = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -78,6 +117,6 @@ const orderSchema = new mongoose.Schema(
   },
 );
 
-const Order = mongoose.model("Order", orderSchema);
+const OrderModel = mongoose.model<Order>("Order", orderSchema);
 
-export default Order;
+export default OrderModel;

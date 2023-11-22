@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import products from "@/products";
 import Rating from "@/components/Rating";
 
 export default async function ProductDetails({
@@ -9,7 +8,12 @@ export default async function ProductDetails({
 }: {
   params: { productId: string };
 }) {
-  const res = await fetch(`${process.env.URL}/api/product/${params.productId}`);
+  const res = await fetch(
+    `${process.env.URL}/api/product/${params.productId}`,
+    {
+      cache: "no-cache",
+    },
+  );
   if (res.headers.get("Content-Type") !== "application/json") return;
   const product = await res.json();
 
