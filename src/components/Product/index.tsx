@@ -7,9 +7,17 @@ export default function Product({ product }: { product: ProductType }) {
   return (
     <Link
       href={`/product/${product._id}`}
-      className="flex flex-col items-center rounded-md border-4 border-cardWhite bg-white bg-clip-border p-4 sm:items-stretch"
+      className="block rounded-md border-4 border-cardWhite bg-white bg-clip-border p-4"
     >
-      <Image src={product.image} alt={product.name} width={350} height={350} />
+      <div className="relative">
+        <Image
+          src={product.image}
+          alt={product.name}
+          width={350}
+          height={350}
+          layout="responsive"
+        />
+      </div>
 
       <div className="pt-4">
         <p className="text-sm text-gray-400">{product.category}</p>
