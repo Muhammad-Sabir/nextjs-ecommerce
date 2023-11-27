@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { Product } from "./product"; // Assuming the product model is in the same directory
+import { Product } from "./product.model"; // Assuming the product model is in the same directory
 
 interface OrderItem {
   name: string;

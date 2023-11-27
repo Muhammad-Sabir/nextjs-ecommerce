@@ -3,7 +3,7 @@ import { RiLinkedinBoxFill } from "react-icons/ri";
 
 export default function Footer() {
   return (
-    <footer className="mt-16 w-screen bg-blackishBlue px-8 py-8 text-bgWhite lg:px-40">
+    <footer className="mt-16 w-screen bg-blackishBlue p-8 text-bgWhite lg:px-40">
       <h1 className="font-bold">ShopCart</h1>
       <p className="mt-2 text-justify">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti
@@ -16,7 +16,7 @@ export default function Footer() {
 
       <div className="mx-20 my-12 border-b border-gray-500"></div>
 
-      <div className="text-md flex justify-between">
+      <div className="flex justify-between text-lg">
         <h3>
           Built by{" "}
           <Link

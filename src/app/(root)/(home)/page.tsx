@@ -11,6 +11,11 @@ export default async function Home() {
 
   const products = await res.json();
 
+  if (!products) {
+    console.log(products);
+    return <></>;
+  }
+
   return (
     <main className="mx-auto px-4 md:px-12 lg:w-[1300px]">
       <Hero />

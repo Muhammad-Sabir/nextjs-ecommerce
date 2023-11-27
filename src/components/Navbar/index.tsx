@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TfiMenu } from "react-icons/tfi";
+import { UserButton, SignedIn } from "@clerk/nextjs";
 import { RiShoppingCart2Line } from "react-icons/ri";
 
 import logo from "$/logo.png";
@@ -19,7 +19,7 @@ export default function Navbar() {
         <h1 className="text-xl font-bold md:flex">ShopCart</h1>
       </Link>
 
-      <ul className="text-primary hidden items-center gap-8 text-xl font-bold md:flex">
+      <ul className="hidden items-center gap-8 text-xl font-bold text-primaryBlue md:flex">
         {links.map((link) => {
           return (
             <li key={link.name}>
@@ -29,16 +29,18 @@ export default function Navbar() {
         })}
       </ul>
 
-      <Link className="hidden items-center md:flex" href="/cart">
-        <RiShoppingCart2Line className="text-3xl" />
-        <p className="text-md hidden rounded-full bg-blackishBlue px-3 py-1 text-bgWhite md:flex">
-          6
-        </p>
-      </Link>
+      <div className="flex gap-4">
+        <Link className="hidden items-center md:flex" href="/cart">
+          <RiShoppingCart2Line className="text-3xl" />
+          <p className="hidden rounded-full bg-blackishBlue px-2 py-1 text-sm text-bgWhite md:flex">
+            6
+          </p>
+        </Link>
 
-      <Link className="text-primary text-4xl md:hidden" href="/login">
-        <TfiMenu />
-      </Link>
+        <SignedIn>
+          <UserButton afterSignOutUrl="/" />
+        </SignedIn>
+      </div>
     </nav>
   );
 }

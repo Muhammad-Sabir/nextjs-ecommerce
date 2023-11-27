@@ -9,12 +9,14 @@ export default async function ProductDetails({
   params: { productId: string };
 }) {
   const res = await fetch(
-    `${process.env.URL}/api/product/${params.productId}`,
+    `${process.env.URL}/api/products/${params.productId}`,
     {
       cache: "no-cache",
     },
   );
+
   if (res.headers.get("Content-Type") !== "application/json") return;
+
   const product = await res.json();
 
   if (!product) {
@@ -30,7 +32,7 @@ export default async function ProductDetails({
   return (
     <main className="mx-auto mt-8 px-4 md:px-12 lg:w-[1300px]">
       <Link
-        className="text-md rounded-sm bg-primaryBlue px-4 py-2 font-bold text-bgWhite"
+        className="rounded-sm bg-primaryBlue px-4 py-2 text-lg font-bold text-bgWhite"
         href="/"
       >
         Back
