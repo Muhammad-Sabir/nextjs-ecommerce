@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import Product from "@/database/product.model";
-import dbConnect from "@/lib/db";
+import connectToDatabase from "@/lib/db";
 
 export async function GET() {
-  await dbConnect();
+  await connectToDatabase();
   const headers = {
     "Content-Type": "application/json",
   };

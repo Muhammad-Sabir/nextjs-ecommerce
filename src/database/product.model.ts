@@ -1,15 +1,15 @@
-import mongoose, { Document, Schema } from "mongoose";
+import { Document, Schema, models, model } from "mongoose";
 
-export interface Review extends Document {
-  user: mongoose.Schema.Types.ObjectId;
+export interface IReview extends Document {
+  user: Schema.Types.ObjectId;
   name: string;
   rating: number;
   comment: string;
 }
 
-const reviewSchema: Schema<Review> = new mongoose.Schema(
+const ReviewSchema: Schema<IReview> = new Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
+    user: { type: Schema.Types.ObjectId, required: true, ref: "User" },
     name: { type: String, required: true },
     rating: { type: Number, required: true },
     comment: { type: String, required: true },
@@ -17,30 +17,29 @@ const reviewSchema: Schema<Review> = new mongoose.Schema(
   { timestamps: true },
 );
 
-// Define the product schema
-export interface Product extends Document {
-  user: mongoose.Schema.Types.ObjectId;
+export interface IProduct extends Document {
+  user: Schema.Types.ObjectId;
   name: string;
   image: string;
   brand: string;
   category: string;
   description: string;
-  reviews: Review[];
+  reviews: IReview[];
   rating: number;
   numReviews: number;
   price: number;
   countInStock: number;
 }
 
-const productSchema: Schema<Product> = new mongoose.Schema(
+const ProductSchema: Schema<IProduct> = new Schema(
   {
-    user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
+    user: { type: Schema.Types.ObjectId, required: true, ref: "User" },
     name: { type: String, required: true },
     image: { type: String, required: true },
     brand: { type: String, required: true },
     category: { type: String, required: true },
     description: { type: String, required: true },
-    reviews: [reviewSchema],
+    reviews: [ReviewSchema],
     rating: { type: Number, required: true, default: 0 },
     numReviews: { type: Number, required: true, default: 0 },
     price: { type: Number, required: true, default: 0 },
@@ -49,5 +48,5 @@ const productSchema: Schema<Product> = new mongoose.Schema(
   { timestamps: true },
 );
 
-export default mongoose.models.Product ||
-  mongoose.model<Product>("Product", productSchema);
+const Product = models.Product || model("Product", ProductSchema);
+export default Product;

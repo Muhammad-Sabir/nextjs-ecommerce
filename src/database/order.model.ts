@@ -1,34 +1,34 @@
-import mongoose, { Document, Schema } from "mongoose";
-import { Product } from "./product.model"; // Assuming the product model is in the same directory
+import { Document, Schema, model, models } from "mongoose";
+import { IProduct } from "./product.model";
 
-interface OrderItem {
+interface IOrderItem {
   name: string;
   qty: number;
   image: string;
   price: number;
-  product: mongoose.Schema.Types.ObjectId | Product; // Assuming Product is the type/interface for your product model
+  product: Schema.Types.ObjectId | IProduct;
 }
 
-interface ShippingAddress {
+interface IShippingAddress {
   address: string;
   city: string;
   postalCode: string;
   country: string;
 }
 
-interface PaymentResult {
+interface IPaymentResult {
   id: string;
   status: string;
   update_time: string;
   email_address: string;
 }
 
-export interface Order extends Document {
-  user: mongoose.Schema.Types.ObjectId; // Assuming User is the type/interface for your user model
-  orderItems: OrderItem[];
-  shippingAddress: ShippingAddress;
+export interface IOrder extends Document {
+  user: Schema.Types.ObjectId;
+  orderItems: IOrderItem[];
+  shippingAddress: IShippingAddress;
   paymentMethod: string;
-  paymentResult?: PaymentResult;
+  paymentResult?: IPaymentResult;
   itemsPrice: number;
   taxPrice: number;
   shippingPrice: number;
@@ -39,10 +39,10 @@ export interface Order extends Document {
   deliveredAt?: Date;
 }
 
-const orderSchema: Schema<Order> = new mongoose.Schema(
+const orderSchema: Schema<IOrder> = new Schema(
   {
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       required: true,
       ref: "User",
     },
@@ -53,7 +53,7 @@ const orderSchema: Schema<Order> = new mongoose.Schema(
         image: { type: String, required: true },
         price: { type: Number, required: true },
         product: {
-          type: mongoose.Schema.Types.ObjectId,
+          type: Schema.Types.ObjectId,
           required: true,
           ref: "Product",
         },
@@ -117,6 +117,6 @@ const orderSchema: Schema<Order> = new mongoose.Schema(
   },
 );
 
-const OrderModel = mongoose.model<Order>("Order", orderSchema);
+const Order = models.Order || model("Order", orderSchema);
 
-export default OrderModel;
+export default Order;
