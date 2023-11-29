@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { UserButton, SignedIn } from "@clerk/nextjs";
 import { RiShoppingCart2Line } from "react-icons/ri";
 
 import logo from "$/logo.png";
@@ -36,10 +35,6 @@ export default function Navbar() {
             6
           </p>
         </Link>
-
-        <SignedIn>
-          <UserButton afterSignOutUrl="/" />
-        </SignedIn>
       </div>
     </nav>
   );
