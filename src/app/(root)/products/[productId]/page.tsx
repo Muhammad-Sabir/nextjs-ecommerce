@@ -25,7 +25,7 @@ export default async function ProductDetails({
     <main className="mx-auto mt-8 px-4 md:px-12 lg:w-[1300px]">
       <Link
         className="rounded-sm bg-primaryBlue px-4 py-2 text-lg font-bold text-bgWhite"
-        href="/"
+        href="/products"
       >
         Back
       </Link>
