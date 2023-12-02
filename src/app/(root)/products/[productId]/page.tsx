@@ -34,8 +34,8 @@ export default async function ProductDetails({
         <Image
           src={product.image}
           alt={product.name}
-          height={500}
-          width={500}
+          width={380}
+          height={302}
           className="rounded-xl"
         />
 

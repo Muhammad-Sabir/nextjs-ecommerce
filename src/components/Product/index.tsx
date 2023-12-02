@@ -9,13 +9,15 @@ export default function Product({ product }: { product: IProduct }) {
       href={`/products/${product._id}`}
       className="block rounded-md border-4 border-cardWhite bg-white bg-clip-border p-4"
     >
-      <div className="relative">
+      <div className="relative h-[200px]">
         <Image
+          className="object-fill"
           src={product.image}
           alt={product.name}
-          width={350}
-          height={350}
-          layout="responsive"
+          fill
+          // width={249}
+          // height={198}
+          // layout="responsive"
         />
       </div>
 
