@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { Product } from "@/types/product";
+import toast from "react-hot-toast";
 
 export interface CartStates {
   products: { item: Product; count: number }[];
@@ -28,14 +29,18 @@ const useCart = create(
         } else {
           set({ products: [...get().products, { item, count: 1 }] });
         }
+
+        toast.success("Product added to the cart successfully.");
       },
       removeProduct: (productId: string) => {
         set({
           products: [...get().products.filter((p) => p.item.id !== productId)],
         });
+        toast.success("Product removed from the cart.");
       },
       removeAll: () => {
         set({ products: [] });
+        toast.success("All products removed.");
       },
     }),
     {
