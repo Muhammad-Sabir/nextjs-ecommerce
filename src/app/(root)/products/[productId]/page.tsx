@@ -1,15 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-
 import Rating from "@/components/Rating";
 import { getProductById } from "@/lib/actions/product.action";
+import AddToCartButton from "@/components/AddToCartButton";
 
 export default async function ProductDetails({
   params,
 }: {
   params: { productId: string };
 }) {
-  const product = await getProductById(params);
+  const product = await JSON.parse(
+    JSON.stringify(await getProductById(params)),
+  );
 
   if (!product) {
     return (
@@ -77,9 +79,7 @@ export default async function ProductDetails({
 
           <div className="mx-4 my-2 border-b border-gray-300"></div>
 
-          <button className="rounded-xl border-4 border-primaryBlue p-2 px-4 font-bold text-primaryBlue">
-            Add to Cart
-          </button>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </main>

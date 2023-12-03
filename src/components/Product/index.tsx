@@ -11,10 +11,11 @@ export default function Product({ product }: { product: IProduct }) {
     >
       <div className="relative h-[200px]">
         <Image
-          className="object-fill"
+          className="overflow-hidden object-cover"
           src={product.image}
           alt={product.name}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           // width={249}
           // height={198}
           // layout="responsive"

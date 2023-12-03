@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { RiShoppingCart2Line } from "react-icons/ri";
-
 import logo from "$/logo.png";
+import { RiShoppingCart2Line } from "react-icons/ri";
 
 const links = [
   { name: "Home", href: "/" },
@@ -29,11 +28,12 @@ export default function Navbar() {
       </ul>
 
       <div className="flex gap-4">
-        <Link className="hidden items-center md:flex" href="/cart">
-          <RiShoppingCart2Line className="text-3xl" />
-          <p className="hidden rounded-full bg-blackishBlue px-2 py-1 text-sm text-bgWhite md:flex">
-            6
-          </p>
+        <Link
+          className="hidden items-center rounded-md bg-blackishBlue px-3 py-1 font-semibold text-bgWhite md:flex md:gap-2"
+          href="/cart"
+        >
+          <p className="hidden text-lg md:flex">Cart</p>
+          <RiShoppingCart2Line className="text-xl" />
         </Link>
       </div>
     </nav>
