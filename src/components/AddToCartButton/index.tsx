@@ -1,9 +1,9 @@
 "use client";
 
-import { IProduct } from "@/database/product.model";
+import { Product } from "@/types/product";
 import useCart from "@/store/cart";
 
-export default function AddToCartButton({ product }: { product: IProduct }) {
+export default function AddToCartButton({ product }: { product: Product }) {
   const cart = useCart();
 
   const addToCartHandler = () => {

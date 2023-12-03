@@ -79,7 +79,15 @@ export default async function ProductDetails({
 
           <div className="mx-4 my-2 border-b border-gray-300"></div>
 
-          <AddToCartButton product={product} />
+          <AddToCartButton
+            product={{
+              id: product._id,
+              name: product.name,
+              image: product.image,
+              price: product.price,
+              countInStock: product.countInStock,
+            }}
+          />
         </div>
       </div>
     </main>

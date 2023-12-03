@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { IProduct } from "@/database/product.model";
+import { Product } from "@/types/product";
 
 export interface CartStates {
-  products: IProduct[];
+  products: { item: Product; count: number }[];
 }
 
 export interface CartActions {
-  addProduct: (product: IProduct) => void;
+  addProduct: (item: Product) => void;
   removeProduct: (productId: string) => void;
   removeAll: () => void;
 }
@@ -16,24 +16,27 @@ const useCart = create(
   persist<CartStates & CartActions>(
     (set, get) => ({
       products: [],
-      addProduct: (product: IProduct) => {
-        // const currentProducts = get().products;
-        // const existingProducts = currentProducts.find(
-        //   (p) => p.id === product.id,
-        // );
+      addProduct: (item: Product) => {
+        const existingProductIndex = get().products.findIndex(
+          (product) => product.item.id === item.id,
+        );
 
-        // if (existingProducts) {
-        //   console.log("Product exists already!");
-        // }
-
-        set({ products: [...get().products, product] });
+        if (existingProductIndex !== -1) {
+          const updatedProducts = [...get().products];
+          updatedProducts[existingProductIndex].count += 1;
+          set({ products: updatedProducts });
+        } else {
+          set({ products: [...get().products, { item, count: 1 }] });
+        }
       },
       removeProduct: (productId: string) => {
         set({
-          products: [...get().products.filter((p) => p.id !== productId)],
+          products: [...get().products.filter((p) => p.item.id !== productId)],
         });
       },
-      removeAll: () => {},
+      removeAll: () => {
+        set({ products: [] });
+      },
     }),
     {
       name: "cart-storage",
