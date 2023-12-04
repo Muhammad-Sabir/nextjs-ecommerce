@@ -9,6 +9,7 @@ export interface CartStates {
 
 export interface CartActions {
   addProduct: (item: Product) => void;
+  decreaseCount: (productId: string) => void;
   removeProduct: (productId: string) => void;
   removeAll: () => void;
 }
@@ -31,6 +32,20 @@ const useCart = create(
         }
 
         toast.success("Product added to the cart successfully.");
+      },
+      decreaseCount: (productId: string) => {
+        const existingProductIndex = get().products.findIndex(
+          (product) => product.item.id === productId,
+        );
+
+        if (existingProductIndex !== -1) {
+          const updatedProducts = [...get().products];
+          updatedProducts[existingProductIndex].count = Math.max(
+            1,
+            updatedProducts[existingProductIndex].count - 1,
+          );
+          set({ products: updatedProducts });
+        }
       },
       removeProduct: (productId: string) => {
         set({
